@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 import postageapp
 
 setup(
-    name='django-postageapp',
+    name='django-postageapp-backend',
     version=postageapp.__versionstr__,
     description='Postageapp email backend for Django framework',
     author='Fragaria, s.r.o.',

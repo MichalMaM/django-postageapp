@@ -40,7 +40,8 @@ class PostageAppEmailBackend(BaseEmailBackend):
                     'recipients': message.to,
                     'headers': {
                         'subject': message.subject,
-                        'from': message.from_email
+                        'from': message.from_email,
+                        'bcc': message.bcc
                     },
                     'content': content
                 }
