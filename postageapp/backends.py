@@ -12,10 +12,10 @@ import postageapp
 
 logger = logging.getLogger('postageapp.backends')
 
-if not hasattr(settings, 'MAILING_POSTAGEAPP_API_KEY'):
-    raise ImproperlyConfigured('Missing `MAILING_POSTAGEAPP_API_KEY` setting.')
+if not hasattr(settings, 'POSTAGEAPP_API_KEY'):
+    raise ImproperlyConfigured('Missing `POSTAGEAPP_API_KEY` setting.')
 
-POSTAGEAPP_API_KEY = settings.MAILING_POSTAGEAPP_API_KEY
+POSTAGEAPP_API_KEY = settings.POSTAGEAPP_API_KEY
 POSTAGEAPP_ENDPOINT = 'https://api.postageapp.com/v.1.0/send_message.json'
 
 
