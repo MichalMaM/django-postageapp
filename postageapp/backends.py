@@ -65,7 +65,7 @@ class PostageAppEmailBackend(BaseEmailBackend):
                 req = urllib2.Request(
                     POSTAGEAPP_ENDPOINT,
                     json.dumps(msgdict),
-                    {'User-Agent': 'django-postageapp (%s)' % postageapp.__version__,
+                    {'User-Agent': 'django-postageapp (%s)' % postageapp.__versionstr__,
                      'Content-Type': 'application/json'}
                 )
                 response = urllib2.urlopen(req)
