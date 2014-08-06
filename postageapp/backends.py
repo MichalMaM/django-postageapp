@@ -25,6 +25,8 @@ class PostageAppEmailBackend(BaseEmailBackend):
             return
 
         for message in email_messages:
+            if not message.to:
+                raise ValueError(u'Recipient is missing')
 
             content = {}
             if isinstance(message, EmailMessage):
