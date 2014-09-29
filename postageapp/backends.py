@@ -17,6 +17,7 @@ if not hasattr(settings, 'POSTAGEAPP_API_KEY'):
 
 POSTAGEAPP_API_KEY = settings.POSTAGEAPP_API_KEY
 POSTAGEAPP_ENDPOINT = 'https://api.postageapp.com/v.1.0/send_message.json'
+POSTAGEAPP_LAYOUT_TEMPLATE = getattr(settings, 'POSTAGEAPP_LAYOUT_TEMPLATE', None)
 
 
 class PostageAppEmailBackend(BaseEmailBackend):
@@ -48,6 +49,9 @@ class PostageAppEmailBackend(BaseEmailBackend):
                     'content': content
                 }
             }
+
+            if POSTAGEAPP_LAYOUT_TEMPLATE is not None:
+                msgdict['template'] = POSTAGEAPP_LAYOUT_TEMPLATE
 
             if hasattr(message, 'extra_headers') and message.extra_headers:
                 msgdict['arguments']['headers'].update(message.extra_headers)
