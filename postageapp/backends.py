@@ -51,7 +51,7 @@ class PostageAppEmailBackend(BaseEmailBackend):
             }
 
             if POSTAGEAPP_LAYOUT_TEMPLATE is not None:
-                msgdict['template'] = POSTAGEAPP_LAYOUT_TEMPLATE
+                msgdict['arguments']['template'] = POSTAGEAPP_LAYOUT_TEMPLATE
 
             if hasattr(message, 'extra_headers') and message.extra_headers:
                 msgdict['arguments']['headers'].update(message.extra_headers)
