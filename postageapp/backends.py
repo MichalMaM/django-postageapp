@@ -1,6 +1,6 @@
 import json
 import logging
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
@@ -27,7 +27,7 @@ class PostageAppEmailBackend(BaseEmailBackend):
 
         for message in email_messages:
             if not message.to:
-                raise ValueError(u'Recipient is missing')
+                raise ValueError('Recipient is missing')
 
             content = {}
             if isinstance(message, EmailMessage):
@@ -69,21 +69,21 @@ class PostageAppEmailBackend(BaseEmailBackend):
                 msgdict['arguments'].update(attachment_dict)
 
             try:
-                req = urllib2.Request(
+                req = urllib.request.Request(
                     POSTAGEAPP_ENDPOINT,
                     json.dumps(msgdict),
                     {'User-Agent': 'django-postageapp (%s)' % postageapp.__versionstr__,
                      'Content-Type': 'application/json'}
                 )
-                response = urllib2.urlopen(req)
+                response = urllib.request.urlopen(req)
                 json_response = json.loads(response.read())
 
                 if json_response['response']['status'] != 'ok':
                     self.error = 'Server returned %s' % json_response['response']['status']
                     logger.error(self.error)
 
-            except urllib2.HTTPError, e:
+            except urllib.error.HTTPError as e:
                 logger.error(e)
 
                 if not self.fail_silently:
-                    raise urllib2.HTTPError, e
+                    raise urllib.error.HTTPError(e)
