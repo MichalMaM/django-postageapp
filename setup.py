@@ -28,8 +28,5 @@ setup(
     install_requires=[
         'setuptools>=0.6b1',
         'django>=1.3'
-    ],
-    setup_requires=[
-        'setuptools_dummy',
     ]
 )
